@@ -54,8 +54,10 @@
 #' \url{http://bl.ocks.org/mbostock/1129492}.
 #' @param opacityNoHover numeric value of the opacity proportion for node labels
 #' text when the mouse is not hovering over them.
-#' @param clickAction character string with a JavaScript expression to evaluate
+#' @param clickNodeAction character string with a JavaScript expression to evaluate
 #' when a node is clicked.
+#' @param clickLinkAction character string with a JavaScript expression to evaluate
+#' when a link is clicked.
 #'
 #' @examples
 #' #### Tabular data example.
@@ -115,7 +117,7 @@
 #' forceNetwork(Links = MisLinks, Nodes = MisNodes, Source = "source",
 #'              Target = "target", Value = "value", NodeID = "name",
 #'              Group = "group", opacity = 1, zoom = F, bounded = T,
-#'              clickAction = MyClickScript)
+#'              clickNodeAction = MyClickScript)
 #' }
 #'
 
@@ -149,7 +151,8 @@ forceNetwork <- function(Links,
                          legend = FALSE,
                          bounded = FALSE,
                          opacityNoHover = 0,
-                         clickAction = NULL)
+                         clickNodeAction = NULL,
+                         clickLinkAction = NULL)
 {
         # Hack for UI consistency. Think of improving.
         colourScale <- as.character(colourScale)
@@ -200,7 +203,8 @@ forceNetwork <- function(Links,
                 radiusCalculation = radiusCalculation,
                 bounded = bounded,
                 opacityNoHover = opacityNoHover,
-                clickAction = clickAction
+                clickNodeAction = clickNodeAction,
+                clickLinkAction = clickLinkAction
         )
 
         # create widget

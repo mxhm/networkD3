@@ -112,7 +112,8 @@ HTMLWidgets.widget({
       .on("mouseout", function(d) {
           d3.select(this)
             .style("opacity", options.opacity);
-      });
+      })
+      .on("click", clickLink);
 
     // draw nodes
     var node = svg.selectAll(".node")
@@ -123,7 +124,7 @@ HTMLWidgets.widget({
       .style("opacity", options.opacity)
       .on("mouseover", mouseover)
       .on("mouseout", mouseout)
-      .on("click", click)
+      .on("click", clickNode)
       .call(force.drag);
 
     node.append("circle")
@@ -193,8 +194,12 @@ HTMLWidgets.widget({
         .style("opacity", options.opacityNoHover);
     }
     
-    function click(d) {
-      return eval(options.clickAction)
+    function clickNode(d) {
+      return eval(options.clickNodeAction)
+    }
+    
+    function clickLink(d) {
+      return eval(options.clickLinkAction)
     }
 
     // add legend option
