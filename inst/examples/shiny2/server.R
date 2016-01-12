@@ -6,17 +6,14 @@ data(MisNodes)
 
 shinyServer(function(input, output) {
   
-  #clickLinkAction <- 'alert("You clicked " + d.source.name);'
-  #clickLinkAction <- 'alert("You clicked edge" + d.source.name + "-" + d.target.name + ".");'
-  #clickLinkAction <- 'Shiny.onInputChange(el.id + "_clickededge", d.source, d.target);'
-  clickLinkAction <- 'Shiny.onInputChange(el.id + "_clickededge", {source: d.source.name, target: d.target.name});'  
-  
+  clickLinkAction <- 'Shiny.onInputChange(el.id + "_clickededge", { source: d.source.name, target: d.target.name });'  
   clickNodeAction <- 'Shiny.onInputChange(el.id + "_clickednode", d.name);'
   
   output$force_network <- renderForceNetwork({
   forceNetwork(Links = MisLinks, Nodes = MisNodes, Source = "source",
                Target = "target", Value = "value", NodeID = "name",
-               Group = "group", opacity = 1, zoom = F, bounded = T,
+               Group = "group", opacity = 1, opacityNoHover = 0.8, zoom = F, bounded = T,
+               fontSize = 9,
                clickNodeAction = clickNodeAction,
                clickLinkAction = clickLinkAction)
   })

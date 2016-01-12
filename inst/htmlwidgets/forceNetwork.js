@@ -108,8 +108,8 @@ HTMLWidgets.widget({
       .style("stroke-width", eval("(" + options.linkWidth + ")"))
       .on("mouseover", function(d) {
           d3.select(this)
-            .style("opacity", 1)
-            .call(d.source.mouseoverNode);
+            .style("opacity", 1);
+            //.call(d.source.mouseoverNode);
       })
       .on("mouseout", function(d) {
           d3.select(this)
@@ -161,6 +161,7 @@ HTMLWidgets.widget({
     }
 
     function mouseoverNode() {
+      console.log("clickTextSize", options.clickTextSize);
       d3.select(this).select("circle").transition()
         .duration(750)
         .attr("r", function(d){return nodeSize(d)+5;});
@@ -168,7 +169,7 @@ HTMLWidgets.widget({
         .duration(750)
         .attr("x", 13)
         .style("stroke-width", ".5px")
-        .style("font", options.clickTextSize + "px ")
+        .style("font", options.clickTextSize + "px " + options.fontFamily)
         .style("opacity", 1);
     }
 
