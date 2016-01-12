@@ -180,7 +180,7 @@ HTMLWidgets.widget({
       d3.select(this).select("text").transition()
         .duration(1250)
         .attr("x", 0)
-        .style("font", options.fontSize + "px ") 
+        .style("font", options.fontSize + "px " + options.fontFamily)
         .style("opacity", options.opacityNoHover);
     }
     
