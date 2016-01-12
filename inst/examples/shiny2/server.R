@@ -1,5 +1,5 @@
 library(shiny)
-#library(networkD3)
+library(networkD3)
 
 data(MisLinks)
 data(MisNodes)

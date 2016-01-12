@@ -1,5 +1,5 @@
 library(shiny)
-#library(networkD3)
+library(networkD3)
 
 # Define UI for application that plots random distributions 
 shinyUI(pageWithSidebar(

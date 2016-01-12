@@ -107,7 +107,8 @@ HTMLWidgets.widget({
       .style("stroke-width", eval("(" + options.linkWidth + ")"))
       .on("mouseover", function(d) {
           d3.select(this)
-            .style("opacity", 1);
+            .style("opacity", 1)
+            .call(d.source.mouseoverNode);
       })
       .on("mouseout", function(d) {
           d3.select(this)
@@ -122,8 +123,8 @@ HTMLWidgets.widget({
       .attr("class", "node")
       .style("fill", function(d) { return color(d.group); })
       .style("opacity", options.opacity)
-      .on("mouseover", mouseover)
-      .on("mouseout", mouseout)
+      .on("mouseover", mouseoverNode)
+      .on("mouseout", mouseoutNode)
       .on("click", clickNode)
       .call(force.drag);
 
@@ -171,7 +172,7 @@ HTMLWidgets.widget({
         });
     }
 
-    function mouseover() {
+    function mouseoverNode() {
       d3.select(this).select("circle").transition()
         .duration(750)
         .attr("r", function(d){return nodeSize(d)+5;});
@@ -183,7 +184,7 @@ HTMLWidgets.widget({
         .style("opacity", 1);
     }
 
-    function mouseout() {
+    function mouseoutNode() {
       d3.select(this).select("circle").transition()
         .duration(750)
         .attr("r", function(d){return nodeSize(d);});
